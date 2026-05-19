@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Cafeteria.Api/Cafeteria.Api.csproj" Id="270f1964-9d08-4497-9f7d-4fa97217bd63" />
+    <Project Path="src/Cafeteria.Infrastructure/Cafeteria.Infrastructure.csproj" Id="b0553d24-1bc0-4a84-a40e-900dbb4b2f22" />
+    <Project Path="src/Domain/Cafeteria.Domain.csproj" Id="c0aa8260-ae9a-48e4-86e7-0884f5682829" />
+  </Folder>
+
+<Folder Name="/tests/">
+  <Project Path="tests/Cafeteria.ArchitectureTests/Cafeteria.ArchitectureTests.csproj" Id="379afb83-4361-429f-ad72-9e8085d7a6d3" />
+  <Project Path="tests/Cafeteria.IntegrationTests/Cafeteria.IntegrationTests.csproj" Id="718b5ce5-151d-409d-a4fe-a4a65187a0f7" />
+  <Project Path="Tests/Cafeteria.UnitTests/Cafeteria.UnitTests.csproj" Id="211bf979-7495-4aab-9c03-9babeee52d1e" />
+</Folder>
+</Solution>

@@ -1,0 +1,116 @@
+# =========================================
+# GLOBAL
+# =========================================
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.bak
+
+# =========================================
+# ENV FILES
+# =========================================
+.env
+.env.*
+!.env.example
+
+# =========================================
+# IDEs
+# =========================================
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+## Rider
+.idea/
+
+# =========================================
+# .NET / C#
+# =========================================
+bin/
+obj/
+
+*.nupkg
+*.snupkg
+
+TestResults/
+coverage/
+coverage-report/
+
+# Entity Framework
+*.dbmdl
+
+# =========================================
+# NODE / REACT
+# =========================================
+node_modules/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+dist/
+build/
+
+.next/
+out/
+
+# React testing
+coverage/
+
+# =========================================
+# MAUI / XAMARIN / MOBILE
+# =========================================
+
+## Android
+*.apk
+*.aab
+
+## iOS
+*.ipa
+
+## MAUI build folders
+artifacts/
+
+# =========================================
+# DATABASE
+# =========================================
+*.mdf
+*.ldf
+*.sqlite
+*.db
+
+# =========================================
+# AZURE / CLOUD
+# =========================================
+.publishsettings
+azureSettings.json
+
+# =========================================
+# SECRETS
+# =========================================
+secrets.json
+appsettings.Development.json
+
+# =========================================
+# GITHUB
+# =========================================
+.github/copilot-workspace-cache/
+
+# =========================================
+# GENERATED FILES
+# =========================================
+Generated/
