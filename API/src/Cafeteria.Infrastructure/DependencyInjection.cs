@@ -4,6 +4,7 @@ using Cafeteria.Infrastructure.Data;
 using Cafeteria.Infrastructure.Repositories;
 using Cafeteria.Application.Inventory;
 using Cafeteria.Application.Orders;
+using Cafeteria.Application.Payments;
 
 namespace Cafeteria.Infrastructure;
 
@@ -17,6 +18,7 @@ public static class DependencyInjection
         // Repositories: use in-memory repositories for stability in early iterations
         services.AddScoped<IInventoryRepository, InMemoryInventoryRepository>();
         services.AddScoped<IOrderRepository, InMemoryOrderRepository>();
+        services.AddScoped<IPaymentRepository, InMemoryPaymentRepository>();
 
         return services;
     }
