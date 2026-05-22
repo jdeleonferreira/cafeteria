@@ -1,0 +1,39 @@
+name: API CI
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-test:
+    name: Build and Test API
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./API
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore
+        run: dotnet restore Cafeteria.slnx
+
+      - name: Build
+        run: dotnet build Cafeteria.slnx --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test Cafeteria.slnx --configuration Release --no-build --verbosity normal
