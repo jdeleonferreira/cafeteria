@@ -13,7 +13,7 @@ public class InventoryItemTests
     {
         var optionId = Guid.NewGuid();
         var createdAt = DateTime.UtcNow;
-        var item = new InventoryItem(optionId, 10m, UnitOfMeasure.Each, 2m, createdAt, Guid.NewGuid());
+        var item = new InventoryItem(optionId, 10m, UnitOfMeasure.Unit, 2m, createdAt, Guid.NewGuid());
 
         item.QuantityOnHand.Should().Be(10m);
         item.Movements.Should().NotBeNull();
@@ -28,7 +28,7 @@ public class InventoryItemTests
     public void Constructor_WithZeroInitialQuantity_NoInitialMovement()
     {
         var optionId = Guid.NewGuid();
-        var item = new InventoryItem(optionId, 0m, UnitOfMeasure.Each, 2m, DateTime.UtcNow, null);
+        var item = new InventoryItem(optionId, 0m, UnitOfMeasure.Unit, 2m, DateTime.UtcNow, null);
 
         item.QuantityOnHand.Should().Be(0m);
         item.Movements.Should().BeEmpty();
@@ -38,7 +38,7 @@ public class InventoryItemTests
     public void ReceiveStock_IncreasesQuantityAndAddsMovement()
     {
         var optionId = Guid.NewGuid();
-        var item = new InventoryItem(optionId, 0m, UnitOfMeasure.Each, 2m, DateTime.UtcNow, null);
+        var item = new InventoryItem(optionId, 0m, UnitOfMeasure.Unit, 2m, DateTime.UtcNow, null);
 
         item.ReceiveStock(5m, "Restock", DateTime.UtcNow, null);
 
@@ -50,7 +50,7 @@ public class InventoryItemTests
     public void ReceiveStock_NonPositive_Throws()
     {
         var optionId = Guid.NewGuid();
-        var item = new InventoryItem(optionId, 0m, UnitOfMeasure.Each, 2m, DateTime.UtcNow, null);
+        var item = new InventoryItem(optionId, 0m, UnitOfMeasure.Unit, 2m, DateTime.UtcNow, null);
 
         Action act = () => item.ReceiveStock(0m, "", DateTime.UtcNow, null);
 
@@ -61,7 +61,7 @@ public class InventoryItemTests
     public void RemoveStock_DecreasesQuantityAndAddsMovement()
     {
         var optionId = Guid.NewGuid();
-        var item = new InventoryItem(optionId, 10m, UnitOfMeasure.Each, 2m, DateTime.UtcNow, null);
+        var item = new InventoryItem(optionId, 10m, UnitOfMeasure.Unit, 2m, DateTime.UtcNow, null);
 
         item.RemoveStock(4m, "Sale", DateTime.UtcNow, null);
 
@@ -73,7 +73,7 @@ public class InventoryItemTests
     public void RemoveStock_Insufficient_Throws()
     {
         var optionId = Guid.NewGuid();
-        var item = new InventoryItem(optionId, 2m, UnitOfMeasure.Each, 1m, DateTime.UtcNow, null);
+        var item = new InventoryItem(optionId, 2m, UnitOfMeasure.Unit, 1m, DateTime.UtcNow, null);
 
         Action act = () => item.RemoveStock(5m, "Sale", DateTime.UtcNow, null);
 
@@ -84,7 +84,7 @@ public class InventoryItemTests
     public void AdjustQuantity_SetsQuantityAndAddsAdjustmentMovement()
     {
         var optionId = Guid.NewGuid();
-        var item = new InventoryItem(optionId, 5m, UnitOfMeasure.Each, 1m, DateTime.UtcNow, null);
+        var item = new InventoryItem(optionId, 5m, UnitOfMeasure.Unit, 1m, DateTime.UtcNow, null);
 
         item.AdjustQuantity(3m, "Cycle count", DateTime.UtcNow, null);
 
@@ -96,7 +96,7 @@ public class InventoryItemTests
     public void AdjustQuantity_Negative_Throws()
     {
         var optionId = Guid.NewGuid();
-        var item = new InventoryItem(optionId, 5m, UnitOfMeasure.Each, 1m, DateTime.UtcNow, null);
+        var item = new InventoryItem(optionId, 5m, UnitOfMeasure.Unit, 1m, DateTime.UtcNow, null);
 
         Action act = () => item.AdjustQuantity(-1m, "", DateTime.UtcNow, null);
 
@@ -107,7 +107,7 @@ public class InventoryItemTests
     public void IsLowStock_ReturnsTrue_WhenUnderOrEqualThreshold()
     {
         var optionId = Guid.NewGuid();
-        var item = new InventoryItem(optionId, 2m, UnitOfMeasure.Each, 2m, DateTime.UtcNow, null);
+        var item = new InventoryItem(optionId, 2m, UnitOfMeasure.Unit, 2m, DateTime.UtcNow, null);
 
         item.IsLowStock().Should().BeTrue();
 
@@ -119,7 +119,7 @@ public class InventoryItemTests
     public void IsLowStock_ReturnsFalse_WhenAboveThreshold()
     {
         var optionId = Guid.NewGuid();
-        var item = new InventoryItem(optionId, 5m, UnitOfMeasure.Each, 2m, DateTime.UtcNow, null);
+        var item = new InventoryItem(optionId, 5m, UnitOfMeasure.Unit, 2m, DateTime.UtcNow, null);
 
         item.IsLowStock().Should().BeFalse();
     }
