@@ -1,9 +1,7 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Cafeteria.Application.Orders;
 using Cafeteria.Infrastructure;
 using Cafeteria.Application.Payments;
+using Cafeteria.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +12,23 @@ builder.Services.AddScoped<PaymentService>();
 
 builder.Services.AddControllers();
 
+// Health checks
+builder.Services.AddHealthChecks();
+
+// Swagger / OpenAPI
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
+
+// Global exception handling
+app.UseMiddleware<GlobalExceptionMiddleware>();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.MapGet("/", () => Results.Ok("Cafeteria API"));
 
@@ -93,5 +107,8 @@ app.MapGet("/payments", async (PaymentService svc) =>
     var list = await svc.ListAsync();
     return Results.Ok(list);
 });
+
+// Health endpoint
+app.MapHealthChecks("/health");
 
 app.Run();
