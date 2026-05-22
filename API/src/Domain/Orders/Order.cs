@@ -1,11 +1,11 @@
-﻿using Cafeteria.Domain.Common;
+using Cafeteria.Domain.Common;
 using Cafeteria.Domain.Enums;
 
 namespace Cafeteria.Domain.Orders;
 
 public class Order : AggregateRoot
 {
-    private readonly List<OrderItem> _items = [];
+    private readonly List<OrderItem> _items = new List<OrderItem>();
 
     public int OrderNumber { get; private set; }
     public string CustomerName { get; private set; }
@@ -13,7 +13,7 @@ public class Order : AggregateRoot
     public OrderStatus Status { get; private set; }
     public DateTime CreatedAtUtc { get; private set; }
 
-    public IReadOnlyCollection<OrderItem> Items => _items;
+    public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
 
     private Order()
     {
@@ -41,6 +41,12 @@ public class Order : AggregateRoot
     public void AddItem(Guid productId, string productName, string sizeName, int quantity, decimal unitPrice)
     {
         _items.Add(new OrderItem(Id, productId, productName, sizeName, quantity, unitPrice));
+    }
+
+    public decimal GetTotal()
+    {
+        var itemsTotal = _items.Sum(i => i.GetLineTotal());
+        return itemsTotal + DonationAmount;
     }
 
     public void MarkInPreparation()

@@ -1,10 +1,10 @@
-﻿using Cafeteria.Domain.Common;
+using Cafeteria.Domain.Common;
 
 namespace Cafeteria.Domain.Orders;
 
 public sealed class OrderItem : Entity
 {
-    private readonly List<OrderItemSelectedOption> _selectedOptions = [];
+    private readonly List<OrderItemSelectedOption> _selectedOptions = new List<OrderItemSelectedOption>();
 
     public Guid OrderId { get; private set; }
     public Guid ProductId { get; private set; }

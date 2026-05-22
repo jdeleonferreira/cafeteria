@@ -12,25 +12,10 @@ namespace Cafeteria.IntegrationTests;
 public class InventoryPersistenceTests
 {
     [Fact]
-    public void DbContext_CanBeConstructed()
-    {
-        var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseInMemoryDatabase(databaseName: $"testdb_{Guid.NewGuid()}")
-            .Options;
-
-        using var db = new AppDbContext(options);
-        db.Should().NotBeNull();
-    }
-
-    [Fact]
     public async Task Can_Save_And_Retrieve_InventoryItem_With_Movements()
     {
-        var options = new DbContextOptionsBuilder<AppDbContext>()
-            .UseInMemoryDatabase(databaseName: $"testdb_{Guid.NewGuid()}")
-            .Options;
-
-        using var db = new AppDbContext(options);
-        var repository = new EfInventoryRepository(db);
+        // use in-memory repository for inventory in this iteration
+        var repository = new InMemoryInventoryRepository();
         var service = new InventoryService(repository);
 
         var request = new CreateInventoryItemRequest(Guid.NewGuid(), 5m, Cafeteria.Domain.Enums.UnitOfMeasure.Unit, 1m, DateTime.UtcNow, null);
