@@ -114,3 +114,4 @@ appsettings.Development.json
 # GENERATED FILES
 # =========================================
 Generated/
+/Global workflow step-by-step.md
