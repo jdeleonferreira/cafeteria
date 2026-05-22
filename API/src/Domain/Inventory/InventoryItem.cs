@@ -1,4 +1,4 @@
-﻿using Cafeteria.Domain.Common;
+using Cafeteria.Domain.Common;
 using Cafeteria.Domain.Enums;
 using Cafeteria.Domain.Ingredients;
 
@@ -6,7 +6,7 @@ namespace Cafeteria.Domain.Inventory;
 
 public sealed class InventoryItem : AggregateRoot
 {
-    private readonly List<InventoryMovement> _movements = [];
+    private readonly List<InventoryMovement> _movements = new List<InventoryMovement>();
 
     public Guid IngredientOptionId { get; private set; }
     public decimal QuantityOnHand { get; private set; }
