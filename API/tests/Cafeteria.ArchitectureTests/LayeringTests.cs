@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using NetArchTest.Rules;
 using Xunit;
 using Cafeteria.Domain.Common;
 
@@ -12,15 +11,12 @@ public class LayeringTests
     public void Domain_Should_Not_Depend_On_Application_Infrastructure_Api()
     {
         var assembly = typeof(AggregateRoot).Assembly;
+        var forbidden = new[] { "Cafeteria.Application", "Cafeteria.Infrastructure", "Cafeteria.Api" };
 
-        var result = Types.InAssembly(assembly)
-            .That()
-            .ResideInNamespace("Cafeteria.Domain", true)
-            .ShouldNotHaveDependencyOn("Cafeteria.Application")
-            .AndShouldNotHaveDependencyOn("Cafeteria.Infrastructure")
-            .AndShouldNotHaveDependencyOn("Cafeteria.Api")
-            .GetResult();
+        var referenced = assembly.GetReferencedAssemblies().Select(a => a.Name).ToArray();
 
-        Assert.True(result.IsSuccessful, "Types in Domain have forbidden dependencies: " + string.Join(", ", result.FailingTypeNames));
+        var violating = forbidden.Intersect(referenced, StringComparer.OrdinalIgnoreCase).ToArray();
+
+        Assert.True(violating.Length == 0, $"Domain assembly has forbidden references: {string.Join(", ", violating)}");
     }
 }
