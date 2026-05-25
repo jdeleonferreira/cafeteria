@@ -1,0 +1,36 @@
+:root {
+  --color-background: #fffaf3;
+  --color-surface: #ffffff;
+  --color-primary: #70412a;
+  --color-primary-dark: #4b291a;
+  --color-accent: #e9b563;
+  --color-text: #251b17;
+  --color-muted: #6c625d;
+  --color-border: #eaded0;
+  --shadow-card: 0 22px 55px rgb(64 37 20 / 10%);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--color-background);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

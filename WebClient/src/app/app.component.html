@@ -1,0 +1,56 @@
+<main class="landing">
+  <header class="header">
+    <a class="brand" href="/" aria-label="Cafeteria, inicio">
+      <span class="brand__mark">C</span>
+      <span>{{ title }}</span>
+    </a>
+    <nav class="navigation" aria-label="Navegacion principal">
+      <a href="#funciones">Funciones</a>
+      <a href="#inicio">Inicio</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero__content">
+      <p class="eyebrow">Gestion simple para tu cafeteria</p>
+      <h1>Pedidos y servicio en un solo lugar.</h1>
+      <p class="hero__description">
+        Administra el men&uacute;, toma pedidos y acompa&ntilde;a la operacion
+        diaria desde una experiencia rapida y clara.
+      </p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="#funciones">Comenzar</a>
+        <a class="button button--secondary" href="#funciones">Conocer funciones</a>
+      </div>
+    </div>
+    <aside class="summary" aria-label="Resumen de operacion">
+      <p class="summary__label">Estado del turno</p>
+      <p class="summary__value">Listo para abrir</p>
+      <div class="summary__row">
+        <span>Pedidos</span>
+        <strong>0</strong>
+      </div>
+      <div class="summary__row">
+        <span>Productos activos</span>
+        <strong>0</strong>
+      </div>
+    </aside>
+  </section>
+
+  <section class="features" id="funciones" aria-label="Funciones iniciales">
+    <article>
+      <h2>Catalogo</h2>
+      <p>Configura productos, precios y disponibilidad.</p>
+    </article>
+    <article>
+      <h2>Pedidos</h2>
+      <p>Registra ventas y consulta el estado de atencion.</p>
+    </article>
+    <article>
+      <h2>Reportes</h2>
+      <p>Prepara informacion diaria para tomar decisiones.</p>
+    </article>
+  </section>
+</main>
+
+<router-outlet />
